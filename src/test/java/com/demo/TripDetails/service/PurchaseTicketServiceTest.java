@@ -94,12 +94,12 @@ public class PurchaseTicketServiceTest {
         int mockId = 111;
         String mockSection = "sec";
         PurchaseTicket mockPurchaseTicket = TestUtil.createPurchaseTicketRequest();
-        when(purchaseTicketRepository.findById(mockId)).thenReturn(Optional.of(mockPurchaseTicket));
         User user = mockPurchaseTicket.getUser();
         user.setSection(mockSection);
-        userRepository.save(user);
         mockPurchaseTicket.setUser(user);
+        userRepository.save(user);
         purchaseTicketRepository.save(mockPurchaseTicket);
+        when(purchaseTicketRepository.findById(mockId)).thenReturn(Optional.of(mockPurchaseTicket));
         PurchaseTicket response = purchaseTicketService.updateSeatByTicketId(mockId,mockSection);
         assertEquals(mockPurchaseTicket, response);
         verify(purchaseTicketRepository, times(1)).findById(mockId);

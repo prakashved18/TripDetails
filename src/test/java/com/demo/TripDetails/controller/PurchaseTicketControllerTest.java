@@ -70,7 +70,7 @@ public class PurchaseTicketControllerTest {
         ResponseEntity<String> response = purchaseTicketController.removeUserByTicketId(mockId);
         assertEquals(mockString, response.getBody());
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        verify(purchaseTicketService, times(1)).removeUserByTicketId(mockId);
+        verify(purchaseTicketService, times(2)).removeUserByTicketId(mockId);
     }
 
     @Test

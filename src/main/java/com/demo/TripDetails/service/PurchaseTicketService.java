@@ -56,8 +56,8 @@ public class PurchaseTicketService {
             PurchaseTicket modifiedTicket = fetchedTicketDetails.get();
             User user = modifiedTicket.getUser();
             user.setSection(updatedSection);
-            user = userRepository.save(user);
             modifiedTicket.setUser(user);
+            userRepository.save(user);
             return purchaseTicketRepository.save(modifiedTicket);
         } else {
             throw new UserTicketNotFoundException(PurchaseTicketConstants.USER_TICKET_NOT_FOUND_WITH_ID +ticketId);
